@@ -1,44 +1,27 @@
-
-//  create pokemonList
+// IIFE
+let pokemonRepository = (function() {
 let pokemonList = [];
 
-let bulbasaur = {
-name: "Bulbasaur",
-height: 7,
-types: ["grass", "poison"]
-};
-
-let charmander = {
-name: "Charmander",
-height: 6,
-types: ["fire"]
-};
-
-let squirtle = {
-name: "Squirtle",
-height: 5,
-types: ["water"]
-};
-
-// push the pokemonList
-pokemonList.push(bulbasaur, 
-    charmander, 
-    squirtle);
-
-// Loop through each item in the pokemonList array
-for (let i = 0; i < pokemonList.length; i++) {
-// Get the current Pokemon object
-let pokemon = pokemonList[i];
-
-// Write the Pokemon's name and height to the DOM
-document.write(`${pokemon.name} (height: ${pokemon.height})`);
-
-// Check if the height is above a certain value
-if (pokemon.height > 6) {
-document.write(" - Wow, that's big!");
+function add(pokemon) {
+pokemonList.push(pokemon);
 }
 
-// Add a line break after each Pokemon
-document.write('\n');
+function getAll() {
+return pokemonList;
 }
-// console.log("bulbasaur\ncharmander\nsquirtle");
+
+return {
+getAll: getAll,
+add: add
+};
+})();
+
+// Adding some Pokémon to the repository
+pokemonRepository.add({ name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] });
+pokemonRepository.add({ name: 'Charmander', height: 0.6, types: ['fire'] });
+pokemonRepository.add({ name: 'Squirtle', height: 0.5, types: ['water'] });
+
+// Using the getAll function to access the pokemonList array
+pokemonRepository.getAll().forEach(function(pokemon) {
+console.log(pokemon.name + ' - Height: ' + pokemon.height + ' - Types: ' + pokemon.types.join(', '));
+});
