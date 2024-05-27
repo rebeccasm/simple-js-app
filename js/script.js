@@ -1,27 +1,54 @@
-// IIFE
+// Update script.js file
 let pokemonRepository = (function() {
-let pokemonList = [];
+  let pokemonList = [];
 
-function add(pokemon) {
-pokemonList.push(pokemon);
-}
+  function add(pokemon) {
+    if (typeof pokemon === 'object' && pokemon !== null) {
+      pokemonList.push(pokemon);
+    } else {
+      console.log('Invalid Pokemon object');
+    }
+  }
 
-function getAll() {
-return pokemonList;
-}
+  function getAll() {
+    return pokemonList;
+  }
 
-return {
-getAll: getAll,
-add: add
-};
+  function addListItem(pokemon) {
+    let pokemonListContainer = document.querySelector('.pokemon-list');
+
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-button');
+
+    button.addEventListener('click', function() {
+      showDetails(pokemon);
+    });
+
+    pokemonListContainer.appendChild(button);
+  }
+
+  function showDetails(pokemon) {
+    console.log(pokemon.name);
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem
+  };
 })();
 
-// Adding some Pokémon to the repository
-pokemonRepository.add({ name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] });
-pokemonRepository.add({ name: 'Charmander', height: 0.6, types: ['fire'] });
-pokemonRepository.add({ name: 'Squirtle', height: 0.5, types: ['water'] });
+// Sample data
+let pokemon1 = { name: 'Pikachu', type: 'Electric' };
+let pokemon2 = { name: 'Charmander', type: 'Fire' };
 
-// Using the getAll function to access the pokemonList array
+// Add Pokemon objects to the pokemonList array
+pokemonRepository.add(pokemon1);
+pokemonRepository.add(pokemon2);
+
+// Iterate over each Pokémon in the repository and create buttons
 pokemonRepository.getAll().forEach(function(pokemon) {
-console.log(pokemon.name + ' - Height: ' + pokemon.height + ' - Types: ' + pokemon.types.join(', '));
+  pokemonRepository.addListItem(pokemon);
 });
+
