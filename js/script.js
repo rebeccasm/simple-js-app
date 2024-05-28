@@ -40,12 +40,29 @@ let pokemonRepository = (function() {
 })();
 
 // Sample data
-let pokemon1 = { name: 'Pikachu', type: 'Electric' };
-let pokemon2 = { name: 'Charmander', type: 'Fire' };
+let pokemon1 = {
+name: "Bulbasaur",
+height: 7,
+types: ["grass", "poison"]
+};
+
+let pokemon2 = {
+name: "Charmander",
+height: 6,
+types: ["fire"]
+};
+
+let pokemon3 = {
+name: "Squirtle",
+height: 5,
+types: ["water"]
+};
+
 
 // Add Pokemon objects to the pokemonList array
 pokemonRepository.add(pokemon1);
 pokemonRepository.add(pokemon2);
+pokemonRepository.add(pokemon3);
 
 // Iterate over each Pokémon in the repository and create buttons
 pokemonRepository.getAll().forEach(function(pokemon) {
