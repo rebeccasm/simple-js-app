@@ -1,71 +1,73 @@
-// Update script.js file
-let pokemonRepository = (function() {
+const pokemonRepository = (function () {
   let pokemonList = [];
-
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   function add(pokemon) {
-    if (typeof pokemon === 'object' && pokemon !== null) {
+    if (typeof pokemon === 'object' &&
+      'name' in pokemon &&
+      'detailsUrl' in pokemon) {
       pokemonList.push(pokemon);
     } else {
-      console.log('Invalid Pokemon object');
+      console.log('pokemon is not correct');
     }
   }
-
   function getAll() {
     return pokemonList;
   }
-
   function addListItem(pokemon) {
-    let pokemonListContainer = document.querySelector('.pokemon-list');
-
+    let listPokemon = document.querySelector('.pokemon-list');
+    let pokemonElement = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('pokemon-button');
-
     button.addEventListener('click', function() {
       showDetails(pokemon);
     });
-
-    pokemonListContainer.appendChild(button);
+    pokemonElement.appendChild(button);
+    listPokemon.appendChild(pokemonElement);
   }
-
-  function showDetails(pokemon) {
-    console.log(pokemon.name);
+  function loadList() {
+    return fetch(apiUrl)
+      .then(response => response.json())
+      .then(json => {
+        json.results.forEach(item => {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url
+          };
+          add(pokemon);
+        });
+      })
+      .catch(err => console.error('Error fetching pokemon list: ', err));
   }
-
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url)
+      .then(response => response.json())
+      .then(details => {
+        // Now we add the details to the item
+        item.imgUrl = details.sprites.front_default;
+        item.height = details.height;
+        console.log(item);
+      })
+      .catch(err => console.error('Error fetching pokemon details: ', err));
+  }
+  function showDetails(item) {
+    loadDetails(item)
+      .then(() => {
+        console.log(item);
+      });
+  }
   return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem
+    add,
+    getAll,
+    addListItem,
+    loadList,
+    loadDetails,
+    showDetails
   };
 })();
-
-// Sample data
-let pokemon1 = {
-name: "Bulbasaur",
-height: 7,
-types: ["grass", "poison"]
-};
-
-let pokemon2 = {
-name: "Charmander",
-height: 6,
-types: ["fire"]
-};
-
-let pokemon3 = {
-name: "Squirtle",
-height: 5,
-types: ["water"]
-};
-
-
-// Add Pokemon objects to the pokemonList array
-pokemonRepository.add(pokemon1);
-pokemonRepository.add(pokemon2);
-pokemonRepository.add(pokemon3);
-
-// Iterate over each Pokémon in the repository and create buttons
-pokemonRepository.getAll().forEach(function(pokemon) {
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(() => {
+  pokemonRepository.getAll().forEach(pokemon => {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
-
