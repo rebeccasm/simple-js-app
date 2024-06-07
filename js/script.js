@@ -61,10 +61,10 @@ const pokemonRepository = (function () {
   function showModal(item) {
     let modalContainer = document.querySelector('#modal-container');
     let modal = document.querySelector('.modal');
-    let closeButton = document.querySelector('.close-button');
     let modalTitle = document.querySelector('.modal-title');
     let modalBody = document.querySelector('.modal-body');
     let modalImg = document.querySelector('.modal-img');
+    let closeButton = document.querySelector('.close-button');
     
     modalTitle.innerText = item.name;
     modalBody.innerHTML = `
