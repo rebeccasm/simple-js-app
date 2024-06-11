@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebecca Murmann</title>
     <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="./README.md">
 </head>
 <body>
-    <div class="pokemon-list"></div>
+    
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="input-area">
+            <input type="text" id="new-item" placeholder="Add item..." />
+            <button id="add-item">Add</button>
+        </div>
+        <ul id="list" class="list">
+            <!-- <li>
+                    <span class="item">Add Pikachu</span>
+                    <span class="delete">X</span>
+                </li> -->
+        </ul>
+    </div>
+    <!-- <div class="pokemon-list"></div> -->
 
     <div id="modal-container">
         <div class="modal">
@@ -18,6 +33,7 @@
             <button class="close-button">Close</button>
         </div>
     </div>
+
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/script.js"></script>
