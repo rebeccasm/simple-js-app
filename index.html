@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebecca Murmann</title>
     <link rel="stylesheet" href="./css/style.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="./README.md">
 </head>
 <body>
     
-    <div class="container">
+    <div id="modal-container">
         <h1>To-Do List</h1>
+        <p><em> Click to mark an item off, click on "X" to delete an item, and drag items to reorder.</em></p>
         <div class="input-area">
             <input type="text" id="new-item" placeholder="Add item..." />
             <button id="add-item">Add</button>
@@ -24,8 +24,10 @@
         </ul>
     </div>
    
-    <script src="js/promise-polyfill.js"></script>
-    <script src="js/fetch-polyfill.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
