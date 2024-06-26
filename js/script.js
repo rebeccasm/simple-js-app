@@ -18,7 +18,7 @@ const pokemonRepository = (function () {
     let pokemonElement = document.createElement('div');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('btn', 'btn-primary'); // Add Bootstrap button classes
+    button.classList.add('btn'); // Add Bootstrap button classes
     button.classList.add('list-group-item'); // Add Bootstrap list item class
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemonModal');
@@ -65,12 +65,12 @@ const pokemonRepository = (function () {
       });
   }
   function showModal(item) {
-    let modal = $('#pokemonModal');
-    let modalTitle = modal.find('.modal-title');
-    let modalBody = modal.find('.modal-body');
-    let modalImg = modal.find('.modal-img');
-    let closeButton = modal.find('.close-button');
-    modal.modal('show')
+    let modal = document.querySelector('#pokemonModal');
+    let modalTitle = document.querySelector('.modal-title');
+    let modalBody = document.querySelector('.modal-body');
+    let modalImg = document.querySelector('.modal-img');
+    let closeButton = document.querySelector('.close-button');
+    // modal.modal('show')
 
     modalTitle.innerText = item.name;
     modalBody.innerHTML = `
