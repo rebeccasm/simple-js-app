@@ -5,6 +5,15 @@ body {
     font: normal normal 13px/16px "Kalam", sans-serif;
 }
 
+.Pokedex-app {
+    font-size: large;
+}
+
+.list-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
 .input-area {
     display: inline-block;

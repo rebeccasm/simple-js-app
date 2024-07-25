@@ -36,8 +36,6 @@ const pokemonRepository = (function () {
           let pokemon = {
             name: item.name,
             detailsUrl: item.url,
-            // imageUrl: details.sprites.other.dream_world.front_default,
-            //   type: details.types[0].type.name, 
           };
           add(pokemon);
         });
